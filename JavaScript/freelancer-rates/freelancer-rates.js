@@ -19,6 +19,9 @@
 //
 // Get those rates calculated!
 
+const WORK_HOURS_DAY = 8;
+const BILLABLE_DAYS_PER_MONTH = 22;
+
 /**
  * The day rate, given a rate per hour
  *
@@ -26,7 +29,7 @@
  * @returns {number} the rate per day
  */
 export function dayRate(ratePerHour) {
-  throw new Error('Remove this line and implement the function');
+  return WORK_HOURS_DAY * ratePerHour;
 }
 
 /**
@@ -37,7 +40,7 @@ export function dayRate(ratePerHour) {
  * @returns {number} the number of days
  */
 export function daysInBudget(budget, ratePerHour) {
-  throw new Error('Remove this line and implement the function');
+  return Math.floor(budget/dayRate(ratePerHour))
 }
 
 /**
@@ -47,7 +50,15 @@ export function daysInBudget(budget, ratePerHour) {
  * @param {number} numDays: number of days the project spans
  * @param {number} discount: for example 20% written as 0.2
  * @returns {number} the rounded up discounted rate
+ * ((16*8*22)*5)*,85+(130%22)*8*16
  */
 export function priceWithMonthlyDiscount(ratePerHour, numDays, discount) {
-  throw new Error('Remove this line and implement the function');
+  let days_without_discount = numDays % BILLABLE_DAYS_PER_MONTH;
+  let days_with_discount = numDays - days_without_discount;
+  
+
+  let day_rate_normal = dayRate(ratePerHour);
+  let day_rate_discount = dayRate(ratePerHour)*(1-discount);
+  
+  return Math.ceil(day_rate_normal*days_without_discount + day_rate_discount * days_with_discount);
 }
