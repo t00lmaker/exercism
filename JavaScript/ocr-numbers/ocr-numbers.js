@@ -43,7 +43,9 @@ function identifyNumber(line0, line1, line2) {
             return '9'
           }
         }else{
-          return '0'
+          if(line2[0] === '|'){
+            return '0'
+          }
         }
       }else{
         if(line2[0] === '|'){
@@ -53,6 +55,7 @@ function identifyNumber(line0, line1, line2) {
         }
       }
     }else{
+      // 237
       if(line2[0] === '|'){
         return '2'
       }else{ 
@@ -65,9 +68,15 @@ function identifyNumber(line0, line1, line2) {
       }
     }
   }else{
-    if(line1[0] === '|') 
-      return '4'
-    else
-      return '1'
+    // not have -  in line 0, should be nothing in line2[0] 
+    if(line2[0] === ' '){
+      if(line1[0] === '|' && line1[1] === '_') 
+        return '4'
+      
+      if(line1[2] === '|'  && line2[2] === '|')
+        return '1'
+    }
   }
+
+  return '?'
 }
