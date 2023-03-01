@@ -17,6 +17,9 @@
 		},
 		{
 			"path": "JavaScript/ocr-numbers"
+		},
+		{
+			"path": "JavaScript/isbn-verifier"
 		}
 	],
 	"settings": {}
